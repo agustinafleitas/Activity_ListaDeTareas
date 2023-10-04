@@ -8,7 +8,7 @@ BotonEnviar.addEventListener("click", async (e)=>{
     let MostrarNotas=NotasInput.value
 
     const randomNum = Math.floor(Math.random() * 1000); //Generar un número al azar
-    let ApiURL=`https://picsum.photos/250?random=${randomNum}`; //El URL de la API se ajustó para que muestre imágenes de 300px y que muestre una imagen al azar segun la variable creada
+    let ApiURL=`https://picsum.photos/250?random=${randomNum}`; //El URL de la API se ajustó para que muestre imágenes de 250px y que muestre una imagen al azar segun la variable creada en la linea 10
     
     try {
         let response = await fetch(ApiURL);
@@ -16,24 +16,26 @@ BotonEnviar.addEventListener("click", async (e)=>{
             throw new Error("Hubo un error al obtener la imagen.");
         }
         
-        const imageBlob = await response.blob(); 
+        const imageBlob = await response.blob(); //"blob" convierte la respuesta de la solicitud fetc en un objeto blob, es decir, representa datos binarios en bruto. Es util para imágenes, audio y archivos.
         const imageUrl = URL.createObjectURL(imageBlob); 
 
     let CrearEspacioNota=document.createElement("div") //Crear div que contenga las notas, imagen y botones
+    CrearEspacioNota.id="TareasRealizar"
 
     let Imagen=document.createElement("img")
-    Imagen.src=ApiURL //Al elemento "img" se le asigna una imagen de la API
+    Imagen.src=imageUrl //Al elemento "img" se le asigna una imagen de la API
 
     let NotaParrafo=document.createElement("p") 
-    NotaParrafo.textContent = `Nota: ${MostrarNotas}`;//Mostrar el texto redactado en el campo de texto
+    NotaParrafo.textContent = `Tarea: ${MostrarNotas}`;//Mostrar el texto redactado en el campo de texto
 
-    //Botones de eliminar y completar 
+    //Boton de completar
     let BotonCompletar=document.createElement("button");
     BotonCompletar.textContent = "Completar";
     BotonCompletar.addEventListener("click", (e)=>{
         NotaParrafo.classList.toggle("completado");
     });
 
+    //Boton de eliminar
     let BotonEliminar=document.createElement("button");
     BotonEliminar.textContent = "Eliminar";
     BotonEliminar.addEventListener("click", (e)=>{
