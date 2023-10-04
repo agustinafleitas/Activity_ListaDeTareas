@@ -1,0 +1,9 @@
+.completado{
+    text-decoration: line-through;
+    color: red
+}
+
+h1{
+    display: flex;
+    align-items: center;
+}
