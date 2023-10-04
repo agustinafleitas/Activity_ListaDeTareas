@@ -8,7 +8,7 @@ BotonEnviar.addEventListener("click", async (e)=>{
     let MostrarNotas=NotasInput.value
 
     const randomNum = Math.floor(Math.random() * 1000); //Generar un número al azar
-    let ApiURL=`https://picsum.photos/250?random=${randomNum}`; //El URL de la API se ajustó para que muestre imágenes de 250px y que muestre una imagen al azar segun la variable creada en la linea 10
+    let ApiURL=`https://picsum.photos/200?random=${randomNum}`; //El URL de la API se ajustó para que muestre imágenes de 250px y que muestre una imagen al azar segun la variable creada en la linea 10
     
     try {
         let response = await fetch(ApiURL);
@@ -26,7 +26,7 @@ BotonEnviar.addEventListener("click", async (e)=>{
     Imagen.src=imageUrl //Al elemento "img" se le asigna una imagen de la API
 
     let NotaParrafo=document.createElement("p") 
-    NotaParrafo.textContent = `Tarea: ${MostrarNotas}`;//Mostrar el texto redactado en el campo de texto
+    NotaParrafo.textContent = `${MostrarNotas}`;//Mostrar el texto redactado en el campo de texto
 
     //Boton de completar
     let BotonCompletar=document.createElement("button");
